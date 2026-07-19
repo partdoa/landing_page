@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    try {
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "surface-container": "#ecedf7",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed": "#311300",
+              "on-secondary-fixed": "#001945",
+              "on-surface": "#181c23",
+              "tertiary-container": "#ba5900",
+              "tertiary": "#944600",
+              "tertiary-fixed-dim": "#ffb689",
+              "surface-container-low": "#f2f3fd",
+              "background": "#f9f9ff",
+              "error": "#ba1a1a",
+              "inverse-on-surface": "#eff0fa",
+              "on-secondary-fixed-variant": "#00429b",
+              "on-tertiary-fixed-variant": "#743500",
+              "on-primary-fixed": "#001a40",
+              "primary-fixed": "#d7e2ff",
+              "on-error-container": "#93000a",
+              "on-tertiary": "#ffffff",
+              "muted": "#8b95a1",
+              "surface-tint": "#005bbe",
+              "secondary-fixed": "#d9e2ff",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-container": "#fefcff",
+              "surface-container-highest": "#e0e2ec",
+              "canvas": "#ffffff",
+              "foreground": "#191f28",
+              "primary-fixed-dim": "#acc7ff",
+              "on-primary-container": "#fefcff",
+              "weak-background": "#e8f3ff",
+              "on-background": "#181c23",
+              "primary": "#0059b9",
+              "inverse-surface": "#2d3038",
+              "surface-container-high": "#e6e8f2",
+              "secondary-fixed-dim": "#b0c6ff",
+              "outline": "#727785",
+              "surface-dim": "#d8d9e3",
+              "secondary": "#0056c6",
+              "on-primary-fixed-variant": "#004491",
+              "on-primary": "#ffffff",
+              "border": "#e5e8eb",
+              "surface-variant": "#e0e2ec",
+              "on-tertiary-container": "#fffbff",
+              "surface-bright": "#f9f9ff",
+              "tertiary-fixed": "#ffdbc8",
+              "on-error": "#ffffff",
+              "danger": "#e42939",
+              "primary-container": "#1071e5",
+              "surface": "#f2f4f6",
+              "body": "#4e5968",
+              "secondary-container": "#2d6fe5",
+              "on-surface-variant": "#414754",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#acc7ff",
+              "outline-variant": "#c1c6d6"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            "spacing": {
+              "xs": "4px",
+              "margin-mobile": "20px",
+              "lg": "16px",
+              "md": "8px",
+              "sm": "6px",
+              "xl": "24px",
+              "gutter": "12px",
+              "xxl": "32px"
+            },
+            "fontFamily": {
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-sm": ["Plus Jakarta Sans"],
+              "headline-xl-mobile": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+              "body-sm": ["14px", {"lineHeight": "21px", "fontWeight": "400"}],
+              "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+              "headline-md": ["24px", {"lineHeight": "36px", "fontWeight": "600"}],
+              "headline-xl": ["36px", {"lineHeight": "54px", "fontWeight": "700"}],
+              "label-md": ["15px", {"lineHeight": "20px", "fontWeight": "600"}],
+              "headline-sm": ["22px", {"lineHeight": "33px", "fontWeight": "600"}],
+              "headline-xl-mobile": ["28px", {"lineHeight": "40px", "fontWeight": "700"}],
+              "headline-lg": ["30px", {"lineHeight": "45px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    } catch (_e) {}
+  </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased relative min-h-screen flex flex-col pb-xxl md:pb-0">
+  <header class="bg-canvas sticky top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-xl h-16 max-w-7xl mx-auto shadow-sm">
+    <div class="flex items-center">
+      <div class="flex items-center gap-2" onclick="location.href='/'" class="cursor-pointer">
+        <img alt="경춘부동산 로고" class="h-10 w-auto object-cover rounded-md" src="agent.jpg">
+        <span class="text-headline-md font-headline-md font-bold text-primary cursor-pointer">경춘부동산</span>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center gap-xl">
+      <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="/">홈</a>
+      <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="#">매물목록</a>
+      <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="news">뉴스/소식</a>
+    </nav>
+    <a href="admin" class="bg-primary text-on-primary font-label-md text-label-md px-lg py-md rounded-lg hover:opacity-90 transition-opacity">
+      관리자 홈
+    </a>
+  </header>
+
+  <main class="flex-grow w-full max-w-4xl mx-auto px-margin-mobile md:px-xl py-xl md:py-xxl">
+    <div class="mb-lg flex justify-between items-center">
+      <h1 id="page-title" class="text-headline-md md:text-headline-lg font-bold text-on-surface">새 글 작성</h1>
+      <a href="admin" class="text-body font-body-sm hover:underline">취소하고 돌아가기</a>
+    </div>
+
+    <form id="write-form" class="bg-canvas border border-border rounded-2xl p-lg md:p-xl shadow-sm flex flex-col gap-lg" onsubmit="handleSave(event)">
+      <div class="flex flex-col gap-2">
+        <label for="category" class="font-label-md text-on-surface text-sm">카테고리</label>
+        <select id="category" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
+          <option value="Market Update">Market Update (부동산 동향)</option>
+          <option value="Policy">Policy (세제/정책)</option>
+          <option value="Notice">Notice (공지사항)</option>
+          <option value="Community">Community (지역 소식)</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="title" class="font-label-md text-on-surface text-sm">제목</label>
+        <input id="title" type="text" required placeholder="제목을 입력하세요" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label for="content" class="font-label-md text-on-surface text-sm">본문 (마크다운 지원)</label>
+        <textarea id="content" required rows="12" placeholder="마크다운을 지원하는 본문을 작성해 주세요. (예: # 제목, - 리스트, **굵게**)" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all font-mono text-sm leading-relaxed"></textarea>
+      </div>
+
+      <div id="submit-error" class="text-danger text-body-sm font-semibold" style="display:none;"></div>
+
+      <div class="flex gap-md pt-lg justify-end">
+        <button type="button" onclick="location.href='admin'" class="bg-surface text-on-surface hover:bg-surface-variant font-label-md px-xl py-3.5 rounded-xl border border-border transition-colors min-h-[48px] text-center w-32">
+          취소
+        </button>
+        <button id="submit-btn" type="submit" class="bg-primary text-on-primary hover:opacity-90 font-label-md px-xl py-3.5 rounded-xl transition-opacity flex items-center justify-center gap-2 min-h-[48px] w-32">
+          <span class="material-symbols-outlined text-[20px]">save</span> 저장
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <footer class="bg-surface-container-low w-full py-xxl px-margin-mobile md:px-xl flex flex-col md:flex-row justify-between items-start gap-lg mt-auto border-t border-border mb-16 md:mb-0">
+    <div>
+      <div class="font-headline-sm text-headline-sm font-bold text-primary mb-md">경춘부동산</div>
+      <p class="font-body-sm text-body-sm text-on-surface mb-md">© 2024 경춘부동산. 모든 권리 보유.</p>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation Bar (모바일 하단 고정 바) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-canvas border-t border-border z-40 flex justify-around items-center h-16 shadow-lg">
+    <a href="/" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+      <span class="material-symbols-outlined text-[24px]">home</span>
+      <span class="text-[10px]">홈</span>
+    </a>
+    <a href="#" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+      <span class="material-symbols-outlined text-[24px]">list_alt</span>
+      <span class="text-[10px]">매물목록</span>
+    </a>
+    <a href="news" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+      <span class="material-symbols-outlined text-[24px]">newspaper</span>
+      <span class="text-[10px]">소식</span>
+    </a>
+    <a href="admin" class="flex flex-col items-center justify-center w-12 h-12 text-primary">
+      <span class="material-symbols-outlined text-[24px]">settings</span>
+      <span class="text-[10px]">관리자</span>
+    </a>
+  </nav>
+
+  <script src="db.js"></script>
+  <script>
+    requireAdmin();
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = Number(urlParams.get('id'));
+
+    async function checkEditMode() {
+      if (postId) {
+        document.getElementById('page-title').textContent = '게시글 수정';
+        try {
+          const posts = await getPosts();
+          const post = posts.find(p => p.id === postId);
+          if (post) {
+            document.getElementById('category').value = post.category || 'Market Update';
+            document.getElementById('title').value = post.title || '';
+            document.getElementById('content').value = post.content || '';
+          } else {
+            alert('수정하려는 게시글을 찾을 수 없습니다.');
+            window.location.href = 'admin';
+          }
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    }
+
+    async function handleSave(event) {
+      event.preventDefault();
+      const errEl = document.getElementById('submit-error');
+      const submitBtn = document.getElementById('submit-btn');
+      
+      errEl.style.display = 'none';
+      submitBtn.disabled = true;
+      submitBtn.textContent = '저장 중...';
+
+      const title = document.getElementById('title').value.trim();
+      const category = document.getElementById('category').value;
+      const content = document.getElementById('content').value;
+      
+      const today = new Date();
+      const dateStr = today.getFullYear() + '.' + 
+                      String(today.getMonth() + 1).padStart(2, '0') + '.' + 
+                      String(today.getDate()).padStart(2, '0');
+
+      const post = {
+        title,
+        category,
+        content,
+        date: dateStr
+      };
+
+      if (postId) {
+        post.id = postId;
+      }
+
+      try {
+        await savePost(post);
+        window.location.href = postId ? `news-detail?id=${postId}` : 'news';
+      } catch (err) {
+        console.error(err);
+        errEl.textContent = '저장 실패: ' + err.message;
+        errEl.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.textContent = '저장';
+      }
+    }
+
+    checkEditMode();
+  </script>
+</body>
+</html>

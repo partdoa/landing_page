@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    try {
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "surface-container": "#ecedf7",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed": "#311300",
+              "on-secondary-fixed": "#001945",
+              "on-surface": "#181c23",
+              "tertiary-container": "#ba5900",
+              "tertiary": "#944600",
+              "tertiary-fixed-dim": "#ffb689",
+              "surface-container-low": "#f2f3fd",
+              "background": "#f9f9ff",
+              "error": "#ba1a1a",
+              "inverse-on-surface": "#eff0fa",
+              "on-secondary-fixed-variant": "#00429b",
+              "on-tertiary-fixed-variant": "#743500",
+              "on-primary-fixed": "#001a40",
+              "primary-fixed": "#d7e2ff",
+              "on-error-container": "#93000a",
+              "on-tertiary": "#ffffff",
+              "muted": "#8b95a1",
+              "surface-tint": "#005bbe",
+              "secondary-fixed": "#d9e2ff",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-container": "#fefcff",
+              "surface-container-highest": "#e0e2ec",
+              "canvas": "#ffffff",
+              "foreground": "#191f28",
+              "primary-fixed-dim": "#acc7ff",
+              "on-primary-container": "#fefcff",
+              "weak-background": "#e8f3ff",
+              "on-background": "#181c23",
+              "primary": "#0059b9",
+              "inverse-surface": "#2d3038",
+              "surface-container-high": "#e6e8f2",
+              "secondary-fixed-dim": "#b0c6ff",
+              "outline": "#727785",
+              "surface-dim": "#d8d9e3",
+              "secondary": "#0056c6",
+              "on-primary-fixed-variant": "#004491",
+              "on-primary": "#ffffff",
+              "border": "#e5e8eb",
+              "surface-variant": "#e0e2ec",
+              "on-tertiary-container": "#fffbff",
+              "surface-bright": "#f9f9ff",
+              "tertiary-fixed": "#ffdbc8",
+              "on-error": "#ffffff",
+              "danger": "#e42939",
+              "primary-container": "#1071e5",
+              "surface": "#f2f4f6",
+              "body": "#4e5968",
+              "secondary-container": "#2d6fe5",
+              "on-surface-variant": "#414754",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#acc7ff",
+              "outline-variant": "#c1c6d6"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px",
+              "button": "16px",
+              "card": "16px"
+            },
+            "spacing": {
+              "xs": "4px",
+              "margin-mobile": "20px",
+              "lg": "16px",
+              "md": "8px",
+              "sm": "6px",
+              "xl": "24px",
+              "gutter": "12px",
+              "xxl": "32px",
+              "section": "64px"
+            },
+            "fontFamily": {
+              "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+              "body-md": ["Plus Jakarta Sans", "sans-serif"],
+              "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+              "headline-xl": ["Plus Jakarta Sans", "sans-serif"],
+              "label-md": ["Plus Jakarta Sans", "sans-serif"],
+              "headline-sm": ["Plus Jakarta Sans", "sans-serif"],
+              "headline-xl-mobile": ["Plus Jakarta Sans", "sans-serif"],
+              "headline-lg": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            "fontSize": {
+              "body-sm": ["14px", { "lineHeight": "21px", "fontWeight": "400" }],
+              "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+              "headline-md": ["24px", { "lineHeight": "36px", "fontWeight": "600" }],
+              "headline-xl": ["36px", { "lineHeight": "54px", "fontWeight": "700" }],
+              "label-md": ["15px", { "lineHeight": "20px", "fontWeight": "600" }],
+              "headline-sm": ["22px", { "lineHeight": "33px", "fontWeight": "600" }],
+              "headline-xl-mobile": ["28px", { "lineHeight": "40px", "fontWeight": "700" }],
+              "headline-lg": ["30px", { "lineHeight": "45px", "fontWeight": "600" }]
+            }
+          }
+        }
+      }
+    } catch (_e) {}
+  </script>
+</head>
+<body class="bg-background text-on-background antialiased selection:bg-primary-fixed-dim selection:text-on-primary-fixed pb-24 md:pb-0">
+  <nav class="bg-canvas border-b border-border sticky top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-xl h-16 max-w-7xl mx-auto shadow-sm">
+    <div class="flex items-center gap-2">
+      <span class="text-[#3182f6] font-bold text-headline-sm">경춘부동산</span>
+    </div>
+    <div class="hidden md:flex items-center gap-lg">
+      <a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md" href="/">홈</a>
+      <a class="text-body font-body-md hover:text-primary transition-colors" href="#">매물목록</a>
+      <a class="text-body font-body-md hover:text-primary transition-colors" href="news">뉴스/소식</a>
+    </div>
+    <div class="hidden md:block">
+      <a href="tel:031-592-8889" class="bg-primary text-on-primary h-[40px] px-lg rounded-button font-label-md hover:bg-primary-container transition-colors inline-flex items-center justify-center">
+        전화상담
+      </a>
+    </div>
+    <div class="md:hidden flex items-center">
+      <button class="text-on-surface p-2" onclick="location.href='news'">
+        <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto w-full px-margin-mobile md:px-xl pb-section pt-xxl flex flex-col gap-section">
+    <section class="flex flex-col md:flex-row items-center gap-xl md:gap-[64px] min-h-[70vh] py-section">
+      <div class="flex-1 flex flex-col gap-lg items-start">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-weak-background rounded-full text-primary font-label-md text-sm mb-2">
+          <span class="material-symbols-outlined text-[18px]">verified</span>
+          Geumgok-dong's Trusted Partner
+        </div>
+        <h1 class="text-headline-xl-mobile md:text-headline-xl font-headline-xl-mobile md:font-headline-xl text-foreground text-balance">
+          경춘부동산의 모든 것, <br/> <span class="text-primary">신뢰로 연결합니다.</span>
+        </h1>
+        <p class="text-body-md font-body-md text-body max-w-lg mb-4">
+          금곡동 지역 맞춤형 부동산 전문 서비스입니다. 매매, 전월세는 물론, 고객님의 미래를 위해 투명하고 정직한 자산 관리 상담을 약속드립니다.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-md w-full sm:w-auto">
+          <a href="tel:031-592-8889" class="bg-[#3182f6] text-white h-[56px] px-[32px] rounded-button font-label-md text-[16px] shadow-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2 w-full sm:w-auto">
+            <span class="material-symbols-outlined">call</span>
+            상담 전화하기
+          </a>
+          <a href="news" class="bg-surface text-on-surface h-[56px] px-[32px] rounded-button font-label-md text-[16px] hover:bg-surface-variant transition-colors flex items-center justify-center w-full sm:w-auto">
+            소식 보러가기
+          </a>
+        </div>
+      </div>
+      <div class="flex-1 w-full flex justify-center items-center relative">
+        <div class="absolute inset-0 bg-primary-fixed-dim/20 rounded-full blur-3xl w-3/4 h-3/4 mx-auto -z-10"></div>
+        <img alt="경춘부동산 전화번호 포함 로고" class="w-full max-w-md object-contain drop-shadow-xl rounded-card" src="agent.jpg"/>
+      </div>
+    </section>
+
+    <!-- Latest News (최신 소식 미리보기 섹션) -->
+    <section id="board-preview" class="flex flex-col gap-xl py-section" style="display: none;">
+      <div class="flex justify-between items-end">
+        <h2 class="text-headline-lg font-headline-lg text-foreground">최신 소식</h2>
+        <a class="text-primary font-label-md hover:underline flex items-center gap-1" href="news">
+          전체 소식 보기 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+      </div>
+      <div id="preview-cards-container" class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+        <!-- 동적으로 카드 3개 렌더링 -->
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-xl py-section">
+      <div class="text-center flex flex-col gap-md max-w-2xl mx-auto">
+        <h2 class="text-headline-lg font-headline-lg text-foreground">금곡동 전문 공인중개사 서비스</h2>
+        <p class="text-body-md font-body-md text-body">금곡동 지역에 대한 깊이 있는 분석과 신뢰를 바탕으로 한 맞춤형 솔루션을 제안해 드립니다.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+        <div class="bg-canvas border border-border rounded-card p-xl flex flex-col gap-lg hover:shadow-lg transition-shadow duration-300 group">
+          <div class="w-12 h-12 bg-weak-background text-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">real_estate_agent</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="text-headline-sm font-headline-sm text-on-surface">금곡동 최다 매물</h3>
+            <p class="text-body-sm font-body-sm text-body">다양한 주거용 및 상업용 매물을 확보하여 선택의 폭을 넓혀 드립니다.</p>
+          </div>
+        </div>
+        <div class="bg-canvas border border-border rounded-card p-xl flex flex-col gap-lg hover:shadow-lg transition-shadow duration-300 group">
+          <div class="w-12 h-12 bg-weak-background text-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">contract</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="text-headline-sm font-headline-sm text-on-surface">투명하고 안전한 계약</h3>
+            <p class="text-body-sm font-body-sm text-body">철저한 권리분석을 토대로 안심하고 서명하실 수 있도록 꼼꼼하게 관리합니다.</p>
+          </div>
+        </div>
+        <div class="bg-canvas border border-border rounded-card p-xl flex flex-col gap-lg hover:shadow-lg transition-shadow duration-300 group">
+          <div class="w-12 h-12 bg-weak-background text-primary rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">analytics</span>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="text-headline-sm font-headline-sm text-on-surface">자산 극대화 전략</h3>
+            <p class="text-body-sm font-body-sm text-body">지역 호재 및 세무 상식에 근거한 자산 분석 보고서를 통해 최적의 기회를 포착합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-surface rounded-card p-xl md:p-xxl flex flex-col md:flex-row items-center gap-xl md:gap-xxl">
+      <div class="w-full md:w-1/3 flex justify-center">
+        <div class="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-white shadow-lg">
+          <img alt="대표 공인중개사" class="w-full h-full object-cover" src="agent.jpg"/>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col gap-lg items-start text-left">
+        <div class="flex flex-col gap-2">
+          <h2 class="text-headline-lg font-headline-lg text-foreground">신뢰할 수 있는 원주민 토박이 금곡동 지역 전문가</h2>
+          <h3 class="text-headline-md font-headline-md text-primary">대표 공인중개사 오정선</h3>
+          <p class="text-headline-sm font-headline-sm text-on-surface mt-1">031-592-8889</p>
+        </div>
+        <p class="text-body-md font-body-md text-body">
+          금곡동에서 20년 넘게 거주하며 지역의 변화를 함께해온 '원주민' 중개사입니다. 단순한 계약을 넘어 고객님의 소중한 자산을 내 가족의 일처럼 정직하고 꼼꼼하게 중개해 드립니다.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <span class="bg-weak-background text-primary px-3 py-1 rounded-full text-label-md">금곡동 지역 전문가</span>
+          <span class="bg-weak-background text-primary px-3 py-1 rounded-full text-label-md">자산 관리 상담</span>
+          <span class="bg-weak-background text-primary px-3 py-1 rounded-full text-label-md">경매 및 토지 전문</span>
+        </div>
+        <a class="bg-[#3182f6] text-white h-[56px] px-[32px] rounded-button font-label-md text-[16px] shadow-sm hover:opacity-90 transition-opacity flex items-center justify-center gap-2 w-full sm:w-auto mt-4" href="tel:031-592-8889">
+          <span class="material-symbols-outlined">call</span>
+          지금 바로 상담하기
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-surface-container-low text-on-surface w-full py-xxl px-margin-mobile md:px-xl flex flex-col md:flex-row justify-between items-start gap-lg border-t border-border mt-auto mb-16 md:mb-0">
+    <div class="flex flex-col gap-sm">
+      <span class="text-[#3182f6] font-bold text-headline-md">경춘부동산</span>
+      <p class="font-body-sm text-body-sm text-body">© 2024 경춘부동산. 모든 권리 보유.</p>
+    </div>
+    <div class="flex flex-col md:flex-row gap-lg md:gap-xxl">
+      <div class="flex flex-col gap-2">
+        <span class="text-body font-body-sm">주소: 성남시 금곡동</span>
+        <span class="text-body font-body-sm">등록번호: #123-45-67890</span>
+        <span class="text-body font-body-sm">연락처: 010-1234-5678</span>
+        <a id="agent-login-btn" href="admin.html" class="text-body font-body-sm hover:text-primary underline cursor-pointer transition-colors mt-2">Agent Login</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation Bar (모바일 하단 고정 바) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-canvas border-t border-border z-40 flex justify-around items-center h-16 shadow-lg">
+    <a href="/" class="flex flex-col items-center justify-center w-12 h-12 text-primary">
+      <span class="material-symbols-outlined text-[24px]">home</span>
+      <span class="text-[10px]">홈</span>
+    </a>
+    <a href="#" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+      <span class="material-symbols-outlined text-[24px]">list_alt</span>
+      <span class="text-[10px]">매물목록</span>
+    </a>
+    <a href="news" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+      <span class="material-symbols-outlined text-[24px]">newspaper</span>
+      <span class="text-[10px]">소식</span>
+    </a>
+    <a href="admin" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+      <span class="material-symbols-outlined text-[24px]">settings</span>
+      <span class="text-[10px]">관리자</span>
+    </a>
+  </nav>
+
+  <script src="db.js"></script>
+  <script>
+    async function initPreview() {
+      try {
+        const posts = await getPosts();
+        if (posts && posts.length > 0) {
+          const previewSection = document.getElementById('board-preview');
+          const cardsContainer = document.getElementById('preview-cards-container');
+          previewSection.style.display = 'flex';
+          
+          const latestPosts = posts.slice(0, 3);
+          cardsContainer.innerHTML = latestPosts.map(post => {
+            const summary = markdownToText(post.content).slice(0, 60) + '...';
+            return `
+              <div onclick="location.href='news-detail?id=${post.id}'" class="bg-canvas border border-border rounded-card p-lg flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 cursor-pointer group">
+                <div>
+                  <div class="flex items-center gap-2 mb-sm">
+                    <span class="bg-weak-background text-primary text-xs px-2.5 py-1 rounded-full font-semibold">${post.category || '뉴스'}</span>
+                    <span class="text-body-sm text-muted text-xs">${post.date || ''}</span>
+                  </div>
+                  <h3 class="text-label-md font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-1 mb-md">${post.title}</h3>
+                  <p class="text-body-sm text-body line-clamp-2">${summary}</p>
+                </div>
+                <div class="text-primary font-label-md text-left text-sm mt-4 flex items-center gap-1 group-hover:underline">
+                  자세히 보기 <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      } catch (e) {
+        console.error('Failed to init board preview', e);
+      }
+    }
+    initPreview();
+  </script>
+</body>
+</html>
