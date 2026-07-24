@@ -120,7 +120,7 @@
     </div>
     <nav class="hidden md:flex items-center gap-xl">
       <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="/">홈</a>
-      <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="#">매물목록</a>
+      <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="properties">매물목록</a>
       <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="news">뉴스/소식</a>
     </nav>
     <div class="flex items-center gap-md">
@@ -151,27 +151,42 @@
     <div id="dashboard-section" class="w-full" style="display:none;">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-lg mb-xl">
         <div>
-          <h1 class="text-headline-md md:text-headline-lg font-bold text-on-surface">게시글 관리</h1>
-          <p class="text-body-md text-body">게시글의 생성, 수정, 삭제를 손쉽게 처리할 수 있습니다.</p>
+          <h1 class="text-headline-md md:text-headline-lg font-bold text-on-surface">통합 관리 대시보드</h1>
+          <p class="text-body-md text-body">경춘부동산 홈페이지의 소식 및 매물을 통합하여 관리합니다.</p>
         </div>
         <div class="flex gap-md w-full md:w-auto">
-          <button onclick="location.href='news-write'" class="bg-primary text-on-primary hover:opacity-90 font-label-md px-xl py-3 rounded-xl flex items-center gap-2 transition-opacity flex-1 md:flex-initial justify-center min-h-[44px]">
-            <span class="material-symbols-outlined text-[20px]">add</span> 새 글 작성
+          <!-- Dynamic Action Button based on Active Tab -->
+          <button id="add-post-btn" onclick="location.href='news-write'" class="bg-primary text-on-primary hover:opacity-90 font-label-md px-xl py-3 rounded-xl flex items-center gap-2 transition-opacity justify-center flex-grow md:flex-grow-0 min-h-[44px]">
+            <span class="material-symbols-outlined text-[20px]">add</span> 새 소식 등록
           </button>
-          <button onclick="handleLogout()" class="bg-surface text-on-surface hover:bg-surface-variant font-label-md px-xl py-3 rounded-xl border border-border transition-colors flex-1 md:flex-initial justify-center min-h-[44px]">
+          <button id="add-prop-btn" onclick="location.href='property-write'" class="hidden bg-[#3182f6] text-white hover:opacity-90 font-label-md px-xl py-3 rounded-xl flex items-center gap-2 transition-opacity justify-center flex-grow md:flex-grow-0 min-h-[44px]">
+            <span class="material-symbols-outlined text-[20px]">add_home</span> 새 매물 등록
+          </button>
+          <button onclick="handleLogout()" class="bg-surface text-on-surface hover:bg-surface-variant font-label-md px-xl py-3 rounded-xl border border-border transition-colors min-h-[44px]">
             로그아웃
           </button>
         </div>
       </div>
 
-      <div class="bg-canvas border border-border rounded-2xl shadow-sm overflow-hidden">
+      <!-- Tab Menu -->
+      <div class="flex border-b border-border mb-lg">
+        <button id="tab-posts" onclick="switchTab('posts')" class="px-xl py-3 text-primary font-bold border-b-2 border-primary font-label-md transition-all">
+          소식 관리
+        </button>
+        <button id="tab-properties" onclick="switchTab('properties')" class="px-xl py-3 text-body hover:text-primary font-label-md transition-all">
+          매물 관리
+        </button>
+      </div>
+
+      <!-- 2-A. Posts List Table -->
+      <div id="posts-container" class="bg-canvas border border-border rounded-2xl shadow-sm overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-surface-container-low border-b border-border text-on-surface font-label-md text-sm">
                 <th class="py-lg px-xl w-20">번호</th>
-                <th class="py-lg px-xl w-32">카테고리</th>
-                <th class="py-lg px-xl">제목</th>
+                <th class="py-lg px-xl w-36">카테고리</th>
+                <th class="py-lg px-xl">소식 제목</th>
                 <th class="py-lg px-xl w-36">작성일</th>
                 <th class="py-lg px-xl w-48 text-center">관리</th>
               </tr>
@@ -181,10 +196,36 @@
             </tbody>
           </table>
         </div>
-        <div id="empty-message" class="py-xxl text-center text-body text-muted" style="display:none;">
-          작성된 게시글이 없습니다.
+        <div id="posts-empty-message" class="py-xxl text-center text-body text-muted" style="display:none;">
+          작성된 소식이 없습니다.
         </div>
       </div>
+
+      <!-- 2-B. Properties List Table -->
+      <div id="properties-container" style="display:none;" class="bg-canvas border border-border rounded-2xl shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-surface-container-low border-b border-border text-on-surface font-label-md text-sm">
+                <th class="py-lg px-xl w-20">번호</th>
+                <th class="py-lg px-xl w-24">유형</th>
+                <th class="py-lg px-xl w-24">형태</th>
+                <th class="py-lg px-xl">매물 제목</th>
+                <th class="py-lg px-xl w-36">가격</th>
+                <th class="py-lg px-xl w-24 text-center">면적</th>
+                <th class="py-lg px-xl w-40 text-center">관리</th>
+              </tr>
+            </thead>
+            <tbody id="properties-table-body" class="divide-y divide-border text-body text-body-md">
+              <!-- Dynamic table rows -->
+            </tbody>
+          </table>
+        </div>
+        <div id="properties-empty-message" class="py-xxl text-center text-body text-muted" style="display:none;">
+          등록된 매물이 없습니다.
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -201,7 +242,7 @@
       <span class="material-symbols-outlined text-[24px]">home</span>
       <span class="text-[10px]">홈</span>
     </a>
-    <a href="#" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+    <a href="properties" class="flex flex-col items-center justify-center w-12 h-12 text-body">
       <span class="material-symbols-outlined text-[24px]">list_alt</span>
       <span class="text-[10px]">매물목록</span>
     </a>
@@ -217,13 +258,15 @@
 
   <script src="db.js"></script>
   <script>
+    let activeTab = 'posts';
+
     async function checkAuth() {
       const isLogged = isAdmin();
       if (isLogged) {
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('dashboard-section').style.display = 'block';
         document.getElementById('header-logout-btn').style.display = 'block';
-        await renderDashboardTable();
+        await refreshDashboardData();
       } else {
         document.getElementById('login-section').style.display = 'block';
         document.getElementById('dashboard-section').style.display = 'none';
@@ -259,10 +302,45 @@
       window.location.reload();
     }
 
-    async function renderDashboardTable() {
-      const tbody = document.getElementById('posts-table-body');
-      const emptyMsg = document.getElementById('empty-message');
+    function switchTab(tab) {
+      activeTab = tab;
       
+      const tabPosts = document.getElementById('tab-posts');
+      const tabProperties = document.getElementById('tab-properties');
+      const postsContainer = document.getElementById('posts-container');
+      const propertiesContainer = document.getElementById('properties-container');
+      const addPostBtn = document.getElementById('add-post-btn');
+      const addPropBtn = document.getElementById('add-prop-btn');
+
+      if (tab === 'posts') {
+        tabPosts.className = 'px-xl py-3 text-primary font-bold border-b-2 border-primary font-label-md transition-all';
+        tabProperties.className = 'px-xl py-3 text-body hover:text-primary font-label-md transition-all';
+        postsContainer.style.display = 'block';
+        propertiesContainer.style.display = 'none';
+        addPostBtn.style.display = 'flex';
+        addPropBtn.style.display = 'none';
+      } else {
+        tabPosts.className = 'px-xl py-3 text-body hover:text-primary font-label-md transition-all';
+        tabProperties.className = 'px-xl py-3 text-primary font-bold border-b-2 border-primary font-label-md transition-all';
+        postsContainer.style.display = 'none';
+        propertiesContainer.style.display = 'block';
+        addPostBtn.style.display = 'none';
+        addPropBtn.style.display = 'flex';
+      }
+      refreshDashboardData();
+    }
+
+    async function refreshDashboardData() {
+      if (activeTab === 'posts') {
+        await renderDashboardPostsTable();
+      } else {
+        await renderDashboardPropertiesTable();
+      }
+    }
+
+    async function renderDashboardPostsTable() {
+      const tbody = document.getElementById('posts-table-body');
+      const emptyMsg = document.getElementById('posts-empty-message');
       tbody.innerHTML = '';
       emptyMsg.style.display = 'none';
 
@@ -289,7 +367,7 @@
                   <button onclick="location.href='news-write?id=${post.id}'" class="text-primary hover:bg-weak-background p-1.5 rounded-lg flex items-center justify-center min-h-[40px] min-w-[40px]" title="수정">
                     <span class="material-symbols-outlined text-[20px]">edit</span>
                   </button>
-                  <button onclick="handleDelete(${post.id})" class="text-error hover:bg-error-container hover:text-on-error-container p-1.5 rounded-lg flex items-center justify-center min-h-[40px] min-w-[40px]" title="삭제">
+                  <button onclick="handleDeletePost(${post.id})" class="text-error hover:bg-error-container hover:text-on-error-container p-1.5 rounded-lg flex items-center justify-center min-h-[40px] min-w-[40px]" title="삭제">
                     <span class="material-symbols-outlined text-[20px]">delete</span>
                   </button>
                 </div>
@@ -304,11 +382,83 @@
       }
     }
 
-    async function handleDelete(id) {
-      if (confirm('정말로 이 게시글을 삭제하시겠습니까?')) {
+    async function renderDashboardPropertiesTable() {
+      const tbody = document.getElementById('properties-table-body');
+      const emptyMsg = document.getElementById('properties-empty-message');
+      tbody.innerHTML = '';
+      emptyMsg.style.display = 'none';
+
+      try {
+        const properties = await getProperties();
+        if (!properties || properties.length === 0) {
+          emptyMsg.style.display = 'block';
+          return;
+        }
+
+        tbody.innerHTML = properties.map(prop => {
+          const typeBadgeColor = prop.type === '매매' ? 'bg-danger text-white' : 
+                                 prop.type === '전세' ? 'bg-primary text-white' : 'bg-weak-background text-primary';
+          
+          let priceStr = prop.price;
+          if (prop.type === '매매' || prop.type === '전세') {
+            const cleanPrice = Number(String(prop.price).replace(/,/g, ''));
+            if (!isNaN(cleanPrice) && cleanPrice >= 10000) {
+              const eok = Math.floor(cleanPrice / 100000000);
+              const man = Math.floor((cleanPrice % 100000000) / 10000);
+              priceStr = (eok > 0 ? eok + '억' : '') + (man > 0 ? ' ' + man + '만' : '') + '원';
+            }
+          }
+
+          return `
+            <tr class="hover:bg-surface-container-low transition-colors">
+              <td class="py-md px-xl">${prop.id}</td>
+              <td class="py-md px-xl">
+                <span class="bg-surface-variant text-on-surface-variant text-xs px-2.5 py-1 rounded font-semibold">${prop.category}</span>
+              </td>
+              <td class="py-md px-xl">
+                <span class="${typeBadgeColor} text-xs px-2 py-0.5 rounded font-bold">${prop.type}</span>
+              </td>
+              <td class="py-md px-xl">
+                <a href="property-detail?id=${prop.id}" class="hover:text-primary hover:underline font-semibold block max-w-xs truncate">${prop.title}</a>
+              </td>
+              <td class="py-md px-xl text-primary font-semibold">${priceStr}</td>
+              <td class="py-md px-xl text-center text-body-sm">${prop.size}㎡</td>
+              <td class="py-md px-xl">
+                <div class="flex items-center justify-center gap-2">
+                  <button onclick="location.href='property-write?id=${prop.id}'" class="text-primary hover:bg-weak-background p-1.5 rounded-lg flex items-center justify-center min-h-[40px] min-w-[40px]" title="수정">
+                    <span class="material-symbols-outlined text-[20px]">edit</span>
+                  </button>
+                  <button onclick="handleDeleteProperty(${prop.id})" class="text-error hover:bg-error-container hover:text-on-error-container p-1.5 rounded-lg flex items-center justify-center min-h-[40px] min-w-[40px]" title="삭제">
+                    <span class="material-symbols-outlined text-[20px]">delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join('');
+      } catch (err) {
+        console.error(err);
+        emptyMsg.textContent = '매물 목록 로드 중 오류가 발생했습니다.';
+        emptyMsg.style.display = 'block';
+      }
+    }
+
+    async function handleDeletePost(id) {
+      if (confirm('정말로 이 소식을 삭제하시겠습니까?')) {
         try {
           await deletePost(id);
-          await renderDashboardTable();
+          await renderDashboardPostsTable();
+        } catch (err) {
+          alert('삭제 실패: ' + err.message);
+        }
+      }
+    }
+
+    async function handleDeleteProperty(id) {
+      if (confirm('정말로 이 매물을 삭제하시겠습니까?')) {
+        try {
+          await deleteProperty(id);
+          await renderDashboardPropertiesTable();
         } catch (err) {
           alert('삭제 실패: ' + err.message);
         }

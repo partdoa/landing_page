@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    try {
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+              "surface-container": "#ecedf7",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed": "#311300",
+              "on-secondary-fixed": "#001945",
+              "on-surface": "#181c23",
+              "tertiary-container": "#ba5900",
+              "tertiary": "#944600",
+              "tertiary-fixed-dim": "#ffb689",
+              "surface-container-low": "#f2f3fd",
+              "background": "#f9f9ff",
+              "error": "#ba1a1a",
+              "inverse-on-surface": "#eff0fa",
+              "on-secondary-fixed-variant": "#00429b",
+              "on-tertiary-fixed-variant": "#743500",
+              "on-primary-fixed": "#001a40",
+              "primary-fixed": "#d7e2ff",
+              "on-error-container": "#93000a",
+              "on-tertiary": "#ffffff",
+              "muted": "#8b95a1",
+              "surface-tint": "#005bbe",
+              "secondary-fixed": "#d9e2ff",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-container": "#fefcff",
+              "surface-container-highest": "#e0e2ec",
+              "canvas": "#ffffff",
+              "foreground": "#191f28",
+              "primary-fixed-dim": "#acc7ff",
+              "on-primary-container": "#fefcff",
+              "weak-background": "#e8f3ff",
+              "on-background": "#181c23",
+              "primary": "#0059b9",
+              "inverse-surface": "#2d3038",
+              "surface-container-high": "#e6e8f2",
+              "secondary-fixed-dim": "#b0c6ff",
+              "outline": "#727785",
+              "surface-dim": "#d8d9e3",
+              "secondary": "#0056c6",
+              "on-primary-fixed-variant": "#004491",
+              "on-primary": "#ffffff",
+              "border": "#e5e8eb",
+              "surface-variant": "#e0e2ec",
+              "on-tertiary-container": "#fffbff",
+              "surface-bright": "#f9f9ff",
+              "tertiary-fixed": "#ffdbc8",
+              "on-error": "#ffffff",
+              "danger": "#e42939",
+              "primary-container": "#1071e5",
+              "surface": "#f2f4f6",
+              "body": "#4e5968",
+              "secondary-container": "#2d6fe5",
+              "on-surface-variant": "#414754",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#acc7ff",
+              "outline-variant": "#c1c6d6"
+            },
+            "borderRadius": {
+              "DEFAULT": "0.25rem",
+              "lg": "0.5rem",
+              "xl": "0.75rem",
+              "full": "9999px"
+            },
+            "spacing": {
+              "xs": "4px",
+              "margin-mobile": "20px",
+              "lg": "16px",
+              "md": "8px",
+              "sm": "6px",
+              "xl": "24px",
+              "gutter": "12px",
+              "xxl": "32px"
+            },
+            "fontFamily": {
+              "body-sm": ["Plus Jakarta Sans"],
+              "body-md": ["Plus Jakarta Sans"],
+              "headline-md": ["Plus Jakarta Sans"],
+              "headline-xl": ["Plus Jakarta Sans"],
+              "label-md": ["Plus Jakarta Sans"],
+              "headline-sm": ["Plus Jakarta Sans"],
+              "headline-xl-mobile": ["Plus Jakarta Sans"],
+              "headline-lg": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+              "body-sm": ["14px", {"lineHeight": "21px", "fontWeight": "400"}],
+              "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+              "headline-md": ["24px", {"lineHeight": "36px", "fontWeight": "600"}],
+              "headline-xl": ["36px", {"lineHeight": "54px", "fontWeight": "700"}],
+              "label-md": ["15px", {"lineHeight": "20px", "fontWeight": "600"}],
+              "headline-sm": ["22px", {"lineHeight": "33px", "fontWeight": "600"}],
+              "headline-xl-mobile": ["28px", {"lineHeight": "40px", "fontWeight": "700"}],
+              "headline-lg": ["30px", {"lineHeight": "45px", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    } catch (_e) {}
+  </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased relative min-h-screen flex flex-col pb-24 md:pb-0">
+  <header class="bg-canvas sticky top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-xl h-16 max-w-7xl mx-auto shadow-sm">
+    <div class="flex items-center">
+      <div class="flex items-center gap-2" onclick="location.href='/'" class="cursor-pointer">
+        <img alt="경춘부동산 로고" class="h-10 w-auto object-cover rounded-md" src="agent.jpg">
+        <span class="text-headline-md font-headline-md font-bold text-primary cursor-pointer">경춘부동산</span>
+      </div>
+    </div>
+    <nav class="hidden md:flex items-center gap-xl">
+      <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="/">홈</a>
+      <a class="text-primary font-bold border-b-2 border-primary pb-1 px-3 py-2" href="properties">매물목록</a>
+      <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="news">뉴스/소식</a>
+    </nav>
+    <a href="tel:031-592-8889" class="bg-primary text-on-primary font-label-md text-label-md px-lg py-md rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2">
+      <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">phone</span>
+      전화상담
+    </a>
+  </header>
+
+  <main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile md:px-xl py-xl md:py-xxl">
+    <div class="mb-xl flex flex-col gap-lg md:flex-row justify-between items-start md:items-end">
+      <div>
+        <h1 class="font-headline-xl text-headline-xl text-on-surface mb-md">추천 매물 목록</h1>
+        <p class="font-body-md text-body-md text-body">경춘부동산에서 엄선하여 추천해 드리는 프리미엄 매물입니다.</p>
+      </div>
+      <div class="w-full md:w-auto relative">
+        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+        <input id="search-input" class="w-full md:w-[300px] pl-10 pr-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-sm text-body-sm text-on-surface transition-all" placeholder="매물명 또는 지역 검색..." type="text">
+      </div>
+    </div>
+
+    <!-- Filters Section -->
+    <div class="mb-xl bg-canvas border border-border rounded-2xl p-lg flex flex-col md:flex-row gap-lg">
+      <div class="flex-1 flex flex-col gap-2">
+        <span class="font-label-md text-sm text-body">거래 형태</span>
+        <div class="flex gap-2 flex-wrap">
+          <button onclick="setFilter('type', 'all')" id="btn-type-all" class="filter-btn bg-primary text-on-primary px-4 py-2 rounded-full font-label-md text-sm transition-colors">전체</button>
+          <button onclick="setFilter('type', '매매')" id="btn-type-매매" class="filter-btn bg-surface text-on-surface hover:bg-surface-variant px-4 py-2 rounded-full font-label-md text-sm transition-colors">매매</button>
+          <button onclick="setFilter('type', '전세')" id="btn-type-전세" class="filter-btn bg-surface text-on-surface hover:bg-surface-variant px-4 py-2 rounded-full font-label-md text-sm transition-colors">전세</button>
+          <button onclick="setFilter('type', '월세')" id="btn-type-월세" class="filter-btn bg-surface text-on-surface hover:bg-surface-variant px-4 py-2 rounded-full font-label-md text-sm transition-colors">월세</button>
+        </div>
+      </div>
+      <div class="flex-1 flex flex-col gap-2">
+        <span class="font-label-md text-sm text-body">매물 유형</span>
+        <div class="flex gap-2 flex-wrap">
+          <button onclick="setFilter('category', 'all')" id="btn-cat-all" class="filter-btn bg-primary text-on-primary px-4 py-2 rounded-full font-label-md text-sm transition-colors">전체</button>
+          <button onclick="setFilter('category', '아파트')" id="btn-cat-아파트" class="filter-btn bg-surface text-on-surface hover:bg-surface-variant px-4 py-2 rounded-full font-label-md text-sm transition-colors">아파트</button>
+          <button onclick="setFilter('category', '빌라')" id="btn-cat-빌라" class="filter-btn bg-surface text-on-surface hover:bg-surface-variant px-4 py-2 rounded-full font-label-md text-sm transition-colors">빌라</button>
+          <button onclick="setFilter('category', '상가')" id="btn-cat-상가" class="filter-btn bg-surface text-on-surface hover:bg-surface-variant px-4 py-2 rounded-full font-label-md text-sm transition-colors">상가</button>
+          <button onclick="setFilter('category', '원룸/투룸')" id="btn-cat-원룸" class="filter-btn bg-surface text-on-surface hover:bg-surface-variant px-4 py-2 rounded-full font-label-md text-sm transition-colors">원룸/투룸</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Properties Grid -->
+    <div id="properties-grid" class="grid grid-cols-1 md:grid-cols-3 gap-lg mb-xxl">
+      <!-- Dynamic Property Cards -->
+    </div>
+    
+    <div id="empty-msg" class="py-xxl text-center text-body text-muted" style="display:none;">
+      조회된 매물이 없습니다.
+    </div>
+  </main>
+
+  <footer class="bg-surface-container-low w-full py-xxl px-margin-mobile md:px-xl flex flex-col md:flex-row justify-between items-start gap-lg mt-auto border-t border-border mb-16 md:mb-0">
+    <div>
+      <div class="font-headline-sm text-headline-sm font-bold text-primary mb-md">경춘부동산</div>
+      <p class="font-body-sm text-body-sm text-body">© 2024 경춘부동산. 모든 권리 보유.</p>
+    </div>
+    <div class="flex flex-col gap-sm">
+      <span class="font-label-md text-label-md text-body">주소: 성남시 금곡동</span>
+      <span class="font-label-md text-label-md text-body">등록번호: 제123-45-67890호</span>
+      <span class="font-label-md text-label-md text-body">연락처: 010-1234-5678</span>
+      <a href="admin.html" class="font-label-md text-label-md text-body hover:text-primary underline transition-colors">Agent Login</a>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation Bar -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-canvas border-t border-border z-40 flex justify-around items-center h-16 shadow-lg">
+    <a href="/" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+      <span class="material-symbols-outlined text-[24px]">home</span>
+      <span class="text-[10px]">홈</span>
+    </a>
+    <a href="properties" class="flex flex-col items-center justify-center w-12 h-12 text-primary">
+      <span class="material-symbols-outlined text-[24px]">list_alt</span>
+      <span class="text-[10px]">매물목록</span>
+    </a>
+    <a href="news" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+      <span class="material-symbols-outlined text-[24px]">newspaper</span>
+      <span class="text-[10px]">소식</span>
+    </a>
+    <a href="admin" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+      <span class="material-symbols-outlined text-[24px]">settings</span>
+      <span class="text-[10px]">관리자</span>
+    </a>
+  </nav>
+
+  <script src="db.js"></script>
+  <script>
+    let allProperties = [];
+    let currentType = 'all';
+    let currentCategory = 'all';
+
+    async function initProperties() {
+      try {
+        allProperties = await getProperties();
+        renderProperties();
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    function setFilter(key, value) {
+      if (key === 'type') {
+        currentType = value;
+        // update UI buttons for type
+        const buttons = ['all', '매매', '전세', '월세'];
+        buttons.forEach(b => {
+          const el = document.getElementById('btn-type-' + (b === 'all' ? 'all' : b));
+          if (b === value) {
+            el.className = 'bg-primary text-on-primary px-4 py-2 rounded-full font-label-md text-sm transition-colors';
+          } else {
+            el.className = 'bg-surface text-on-surface hover:bg-surface-variant px-4 py-2 rounded-full font-label-md text-sm transition-colors';
+          }
+        });
+      } else if (key === 'category') {
+        currentCategory = value;
+        // update UI buttons for category
+        const buttons = ['all', '아파트', '빌라', '상가', '원룸/투룸'];
+        buttons.forEach(b => {
+          let btnId = 'btn-cat-';
+          if (b === 'all') btnId += 'all';
+          else if (b === '아파트') btnId += '아파트';
+          else if (b === '빌라') btnId += '빌라';
+          else if (b === '상가') btnId += '상가';
+          else if (b === '원룸/투룸') btnId += '원룸';
+          const el = document.getElementById(btnId);
+          if (b === value) {
+            el.className = 'bg-primary text-on-primary px-4 py-2 rounded-full font-label-md text-sm transition-colors';
+          } else {
+            el.className = 'bg-surface text-on-surface hover:bg-surface-variant px-4 py-2 rounded-full font-label-md text-sm transition-colors';
+          }
+        });
+      }
+      renderProperties();
+    }
+
+    function renderProperties() {
+      const grid = document.getElementById('properties-grid');
+      const emptyMsg = document.getElementById('empty-msg');
+      const query = document.getElementById('search-input').value.trim().toLowerCase();
+
+      grid.innerHTML = '';
+      emptyMsg.style.display = 'none';
+
+      let filtered = allProperties;
+
+      if (currentType !== 'all') {
+        filtered = filtered.filter(p => p.type === currentType);
+      }
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === currentCategory);
+      }
+      if (query) {
+        filtered = filtered.filter(p => 
+          p.title.toLowerCase().includes(query) || 
+          p.content.toLowerCase().includes(query) || 
+          (p.category && p.category.toLowerCase().includes(query))
+        );
+      }
+
+      if (filtered.length === 0) {
+        emptyMsg.style.display = 'block';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(prop => {
+        const typeBadgeColor = prop.type === '매매' ? 'bg-danger text-white' : 
+                               prop.type === '전세' ? 'bg-primary text-white' : 'bg-weak-background text-primary';
+        
+        let priceStr = prop.price;
+        if (prop.type === '매매' || prop.type === '전세') {
+          // Format long numbers like 1,200,000,000 to Korean style 12억
+          const cleanPrice = Number(String(prop.price).replace(/,/g, ''));
+          if (!isNaN(cleanPrice) && cleanPrice >= 10000) {
+            const eok = Math.floor(cleanPrice / 100000000);
+            const man = Math.floor((cleanPrice % 100000000) / 10000);
+            priceStr = (eok > 0 ? eok + '억' : '') + (man > 0 ? ' ' + man + '만' : '') + '원';
+          }
+        }
+
+        return `
+          <div onclick="location.href='property-detail?id=${prop.id}'" class="bg-canvas border border-border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow cursor-pointer group">
+            <div class="relative w-full h-[200px] overflow-hidden bg-surface flex items-center justify-center">
+              <img src="${prop.image || 'screen.png'}" alt="${prop.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              <span class="absolute top-4 left-4 ${typeBadgeColor} text-xs px-3 py-1.5 rounded-full font-bold shadow-sm">${prop.type}</span>
+            </div>
+            <div class="p-lg flex flex-col gap-sm">
+              <div class="flex items-center gap-2">
+                <span class="bg-surface-variant text-on-surface-variant text-[11px] px-2 py-0.5 rounded font-semibold">${prop.category}</span>
+                <span class="text-body-sm text-muted text-xs">${prop.size}㎡ (${Math.round(prop.size * 0.3025)}평)</span>
+              </div>
+              <h3 class="text-label-md font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-1">${prop.title}</h3>
+              <p class="text-headline-sm font-bold text-[#3182f6]">${priceStr}</p>
+              <div class="flex items-center gap-1 text-[12px] text-body mt-2 border-t border-border pt-sm">
+                <span class="material-symbols-outlined text-[16px] text-muted">home_work</span>
+                <span>${prop.rooms}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    document.getElementById('search-input').addEventListener('input', renderProperties);
+
+    initProperties();
+  </script>
+</body>
+</html>

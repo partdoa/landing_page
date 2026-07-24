@@ -12,6 +12,7 @@ async function loadConfig() {
     github_owner: file.github_owner || '',
     github_repo: file.github_repo || '',
     data_file_path: file.data_file_path || 'data/posts.json',
+    properties_file_path: 'data/properties.json',
     admin_password: api.admin_password || file.admin_password || 'admin1234'
   };
   return _config;
@@ -177,7 +178,7 @@ function renderMarkdown(src) {
 
 function markdownToText(src) {
   if (!src) return '';
-  let txt = src.replace(/---[\s\S]*?---/, ''); // Remove frontmatter if present
+  let txt = src.replace(/---[\s\S]*?---/, '');
   txt = txt.replace(/^(#{1,6})\s+/gm, '');
   txt = txt.replace(/^[-*+]\s+/gm, '');
   txt = txt.replace(/^\d+\.\s+/gm, '');
@@ -275,9 +276,8 @@ async function savePost(post) {
     }
 
     const utf8Bytes = new TextEncoder().encode(JSON.stringify(posts, null, 2));
-    let base64Content = '';
     const binString = Array.from(utf8Bytes, byte => String.fromCharCode(byte)).join('');
-    base64Content = btoa(binString);
+    const base64Content = btoa(binString);
 
     const body = {
       message: post.id ? `feat: update post ${post.id}` : `feat: create new post ${post.title}`,
@@ -343,6 +343,148 @@ async function deletePost(id) {
     } else {
       const fileInfo = await res.json();
       localStorage.setItem('posts_sha', fileInfo.content.sha);
+    }
+  }
+}
+
+async function getProperties() {
+  const conf = await loadConfig();
+  let properties = [];
+  const localData = localStorage.getItem('properties');
+  if (localData) {
+    properties = JSON.parse(localData);
+  }
+
+  if (conf.github_token && conf.github_token !== 'YOUR_GITHUB_TOKEN' && conf.github_owner && conf.github_repo) {
+    try {
+      const url = `https://api.github.com/repos/${conf.github_owner}/${conf.github_repo}/contents/${conf.properties_file_path}`;
+      const res = await githubFetch(url);
+      if (res.ok) {
+        const fileInfo = await res.json();
+        const content = decodeURIComponent(escape(atob(fileInfo.content)));
+        properties = JSON.parse(content);
+        localStorage.setItem('properties', JSON.stringify(properties));
+        localStorage.setItem('properties_sha', fileInfo.sha);
+      }
+    } catch (e) {
+      console.error('Failed to sync properties from GitHub, using local data', e);
+    }
+  }
+
+  if (properties.length === 0) {
+    try {
+      const res = await fetch(conf.properties_file_path);
+      if (res.ok) {
+        properties = await res.json();
+        localStorage.setItem('properties', JSON.stringify(properties));
+      }
+    } catch(e) {
+      console.error('Failed to load local static properties', e);
+    }
+  }
+
+  return properties.sort((a, b) => b.id - a.id);
+}
+
+async function saveProperty(property) {
+  const conf = await loadConfig();
+  let properties = await getProperties();
+
+  if (property.id) {
+    const idx = properties.findIndex(p => p.id === Number(property.id));
+    if (idx !== -1) {
+      properties[idx] = { ...properties[idx], ...property, id: Number(property.id) };
+    }
+  } else {
+    const maxId = properties.reduce((max, p) => p.id > max ? p.id : max, 0);
+    property.id = maxId + 1;
+    properties.unshift(property);
+  }
+
+  localStorage.setItem('properties', JSON.stringify(properties));
+
+  if (conf.github_token && conf.github_token !== 'YOUR_GITHUB_TOKEN' && conf.github_owner && conf.github_repo) {
+    let sha = localStorage.getItem('properties_sha') || '';
+    const url = `https://api.github.com/repos/${conf.github_owner}/${conf.github_repo}/contents/${conf.properties_file_path}`;
+
+    if (!sha) {
+      try {
+        const res = await githubFetch(url);
+        if (res.ok) {
+          const fileInfo = await res.json();
+          sha = fileInfo.sha;
+        }
+      } catch (e) {}
+    }
+
+    const utf8Bytes = new TextEncoder().encode(JSON.stringify(properties, null, 2));
+    const binString = Array.from(utf8Bytes, byte => String.fromCharCode(byte)).join('');
+    const base64Content = btoa(binString);
+
+    const body = {
+      message: property.id ? `feat: update property ${property.id}` : `feat: create new property ${property.title}`,
+      content: base64Content
+    };
+    if (sha) body.sha = sha;
+
+    const res = await githubFetch(url, {
+      method: 'PUT',
+      body: JSON.stringify(body)
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(`GitHub save property failed: ${err.message}`);
+    } else {
+      const fileInfo = await res.json();
+      localStorage.setItem('properties_sha', fileInfo.content.sha);
+    }
+  }
+  return property;
+}
+
+async function deleteProperty(id) {
+  const conf = await loadConfig();
+  let properties = await getProperties();
+  properties = properties.filter(p => p.id !== Number(id));
+
+  localStorage.setItem('properties', JSON.stringify(properties));
+
+  if (conf.github_token && conf.github_token !== 'YOUR_GITHUB_TOKEN' && conf.github_owner && conf.github_repo) {
+    let sha = localStorage.getItem('properties_sha') || '';
+    const url = `https://api.github.com/repos/${conf.github_owner}/${conf.github_repo}/contents/${conf.properties_file_path}`;
+
+    if (!sha) {
+      try {
+        const res = await githubFetch(url);
+        if (res.ok) {
+          const fileInfo = await res.json();
+          sha = fileInfo.sha;
+        }
+      } catch (e) {}
+    }
+
+    const utf8Bytes = new TextEncoder().encode(JSON.stringify(properties, null, 2));
+    const binString = Array.from(utf8Bytes, byte => String.fromCharCode(byte)).join('');
+    const base64Content = btoa(binString);
+
+    const body = {
+      message: `feat: delete property ${id}`,
+      content: base64Content
+    };
+    if (sha) body.sha = sha;
+
+    const res = await githubFetch(url, {
+      method: 'PUT',
+      body: JSON.stringify(body)
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      throw new Error(`GitHub delete property failed: ${err.message}`);
+    } else {
+      const fileInfo = await res.json();
+      localStorage.setItem('properties_sha', fileInfo.content.sha);
     }
   }
 }

@@ -111,17 +111,17 @@
   </script>
 </head>
 <body class="bg-background text-on-background font-body-md antialiased relative min-h-screen flex flex-col pb-24 md:pb-0">
-  <header class="bg-canvas dark:bg-on-surface sticky top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-xl h-16 max-w-7xl mx-auto shadow-sm">
+  <header class="bg-canvas sticky top-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-xl h-16 max-w-7xl mx-auto shadow-sm">
     <div class="flex items-center">
       <div class="flex items-center gap-2" onclick="location.href='/'" class="cursor-pointer">
         <img alt="경춘부동산 로고" class="h-10 w-auto object-cover rounded-md" src="agent.jpg">
-        <span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed-dim cursor-pointer">경춘부동산</span>
+        <span class="text-headline-md font-headline-md font-bold text-primary cursor-pointer">경춘부동산</span>
       </div>
     </div>
     <nav class="hidden md:flex items-center gap-xl">
-      <a class="text-body dark:text-surface-variant font-body-md hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-weak-background dark:hover:bg-on-secondary-fixed-variant transition-colors px-3 py-2 rounded-lg" href="/">홈</a>
-      <a class="text-body dark:text-surface-variant font-body-md hover:text-primary dark:hover:text-primary-fixed-dim hover:bg-weak-background dark:hover:bg-on-secondary-fixed-variant transition-colors px-3 py-2 rounded-lg" href="properties">매물목록</a>
-      <a class="text-primary dark:text-primary-fixed-dim font-bold border-b-2 border-primary dark:border-primary-fixed-dim pb-1 px-3 py-2" href="news">뉴스/소식</a>
+      <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="/">홈</a>
+      <a class="text-primary font-bold border-b-2 border-primary pb-1 px-3 py-2" href="properties">매물목록</a>
+      <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="news">뉴스/소식</a>
     </nav>
     <a href="tel:031-592-8889" class="bg-primary text-on-primary font-label-md text-label-md px-lg py-md rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2">
       <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">phone</span>
@@ -131,26 +131,56 @@
 
   <main class="flex-grow w-full max-w-4xl mx-auto px-margin-mobile md:px-xl py-xl md:py-xxl">
     <div class="mb-lg">
-      <a href="news" class="inline-flex items-center gap-2 text-primary font-label-md hover:underline py-2">
-        <span class="material-symbols-outlined text-[18px]">arrow_back</span> 목록으로 돌아가기
+      <a href="properties" class="inline-flex items-center gap-2 text-primary font-label-md hover:underline py-2">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span> 매물목록으로 돌아가기
       </a>
     </div>
 
-    <article id="detail-card" class="bg-canvas border border-border rounded-2xl p-lg md:p-xl shadow-sm mb-lg">
-      <div id="loading-spinner" class="py-xxl text-center text-body">소식을 불러오는 중입니다...</div>
-      <div id="post-header" style="display:none;" class="border-b border-border pb-xl mb-xl">
-        <div class="flex items-center gap-2 mb-md">
-          <span id="post-category" class="bg-weak-background text-primary text-xs px-3 py-1 rounded-full font-semibold"></span>
-          <span id="post-date" class="text-body-sm text-muted text-xs"></span>
-        </div>
-        <h1 id="post-title" class="text-headline-sm md:text-headline-lg font-bold text-on-surface leading-tight"></h1>
-      </div>
-      <div id="post-content" style="display:none;" class="prose prose-blue max-w-none text-on-background text-body-md">
-        <!-- Rendered Markdown goes here -->
-      </div>
-    </article>
+    <div id="loading-spinner" class="py-xxl text-center text-body">매물 정보를 불러오는 중입니다...</div>
 
-    <!-- Admin actions -->
+    <div id="property-card" style="display:none;" class="bg-canvas border border-border rounded-2xl overflow-hidden shadow-sm mb-lg">
+      <div class="relative w-full h-[240px] md:h-[400px] overflow-hidden bg-surface flex items-center justify-center">
+        <img id="prop-image" src="screen.png" alt="매물 이미지" class="w-full h-full object-cover">
+        <span id="prop-type" class="absolute top-4 left-4 text-white text-xs px-3 py-1.5 rounded-full font-bold shadow-sm"></span>
+      </div>
+
+      <div class="p-lg md:p-xl flex flex-col gap-lg">
+        <div class="border-b border-border pb-lg flex flex-col gap-md">
+          <div class="flex items-center gap-2">
+            <span id="prop-category" class="bg-surface-variant text-on-surface-variant text-xs px-3 py-1 rounded font-semibold"></span>
+            <span id="prop-size" class="text-body-sm text-muted text-xs"></span>
+          </div>
+          <h1 id="prop-title" class="text-headline-sm md:text-headline-lg font-bold text-on-surface leading-tight"></h1>
+          <p id="prop-price" class="text-headline-md md:text-headline-lg font-bold text-[#3182f6]"></p>
+        </div>
+
+        <!-- Spec Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-md bg-surface p-lg rounded-xl">
+          <div class="flex flex-col gap-xs text-center border-r border-border md:border-r-0 md:border-b-0">
+            <span class="text-body-sm text-muted">거래 종류</span>
+            <span id="spec-type" class="font-bold text-on-surface"></span>
+          </div>
+          <div class="flex flex-col gap-xs text-center border-r-0 md:border-r border-border">
+            <span class="text-body-sm text-muted">매물 구분</span>
+            <span id="spec-category" class="font-bold text-on-surface"></span>
+          </div>
+          <div class="flex flex-col gap-xs text-center border-r border-border">
+            <span class="text-body-sm text-muted">전용 면적</span>
+            <span id="spec-size" class="font-bold text-on-surface"></span>
+          </div>
+          <div class="flex flex-col gap-xs text-center">
+            <span class="text-body-sm text-muted">방 / 욕실</span>
+            <span id="spec-rooms" class="font-bold text-on-surface"></span>
+          </div>
+        </div>
+
+        <div id="prop-content" class="prose prose-blue max-w-none text-on-background text-body-md pt-lg border-t border-border">
+          <!-- Rendered Markdown description goes here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Actions -->
     <div id="admin-actions" style="display:none;" class="flex justify-end gap-md mb-xxl">
       <button id="edit-btn" class="bg-surface text-on-surface hover:bg-surface-variant font-label-md px-xl py-3 rounded-xl border border-border flex items-center gap-2 transition-colors min-h-[44px]">
         <span class="material-symbols-outlined text-[20px]">edit</span> 수정하기
@@ -161,30 +191,24 @@
     </div>
   </main>
 
-  <footer class="bg-surface-container-low dark:bg-on-surface w-full py-xxl px-margin-mobile md:px-xl flex flex-col md:flex-row justify-between items-start gap-lg mt-auto border-t border-border mb-16 md:mb-0">
+  <footer class="bg-surface-container-low w-full py-xxl px-margin-mobile md:px-xl flex flex-col md:flex-row justify-between items-start gap-lg mt-auto border-t border-border mb-16 md:mb-0">
     <div>
-      <div class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed-dim mb-md">경춘부동산</div>
-      <p class="font-body-sm text-body-sm text-on-surface dark:text-surface-bright mb-md">© 2024 경춘부동산. 모든 권리 보유.</p>
-    </div>
-    <div class="flex flex-col gap-sm">
-      <span class="font-label-md text-label-md text-body dark:text-surface-variant">주소: 성남시 금곡동</span>
-      <span class="font-label-md text-label-md text-body dark:text-surface-variant">등록번호: 제123-45-67890호</span>
-      <span class="font-label-md text-label-md text-body dark:text-surface-variant">연락처: 010-1234-5678</span>
-      <a href="admin.html" class="font-label-md text-label-md text-body dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed-dim underline transition-colors">Agent Login</a>
+      <div class="font-headline-sm text-headline-sm font-bold text-primary mb-md">경춘부동산</div>
+      <p class="font-body-sm text-body-sm text-body">© 2024 경춘부동산. 모든 권리 보유.</p>
     </div>
   </footer>
 
-  <!-- Mobile Bottom Navigation Bar (모바일 하단 고정 바) -->
+  <!-- Mobile Bottom Navigation Bar -->
   <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-canvas border-t border-border z-40 flex justify-around items-center h-16 shadow-lg">
     <a href="/" class="flex flex-col items-center justify-center w-12 h-12 text-body">
       <span class="material-symbols-outlined text-[24px]">home</span>
       <span class="text-[10px]">홈</span>
     </a>
-    <a href="properties" class="flex flex-col items-center justify-center w-12 h-12 text-body">
+    <a href="properties" class="flex flex-col items-center justify-center w-12 h-12 text-primary">
       <span class="material-symbols-outlined text-[24px]">list_alt</span>
       <span class="text-[10px]">매물목록</span>
     </a>
-    <a href="news" class="flex flex-col items-center justify-center w-12 h-12 text-primary">
+    <a href="news" class="flex flex-col items-center justify-center w-12 h-12 text-body">
       <span class="material-symbols-outlined text-[24px]">newspaper</span>
       <span class="text-[10px]">소식</span>
     </a>
@@ -197,42 +221,67 @@
   <script src="db.js"></script>
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const postId = Number(urlParams.get('id'));
+    const propId = Number(urlParams.get('id'));
 
-    async function loadPostDetail() {
-      if (!postId) {
-        document.getElementById('loading-spinner').textContent = '올바르지 않은 게시글 ID입니다.';
+    async function loadPropertyDetail() {
+      if (!propId) {
+        document.getElementById('loading-spinner').textContent = '올바르지 않은 매물 ID입니다.';
         return;
       }
 
       try {
-        const posts = await getPosts();
-        const post = posts.find(p => p.id === postId);
+        const properties = await getProperties();
+        const prop = properties.find(p => p.id === propId);
 
-        if (!post) {
-          document.getElementById('loading-spinner').textContent = '존재하지 않는 게시글입니다.';
+        if (!prop) {
+          document.getElementById('loading-spinner').textContent = '존재하지 않는 매물입니다.';
           return;
         }
 
         document.getElementById('loading-spinner').style.display = 'none';
-        document.getElementById('post-header').style.display = 'block';
-        document.getElementById('post-content').style.display = 'block';
+        document.getElementById('property-card').style.display = 'block';
 
-        document.getElementById('post-title').textContent = post.title;
-        document.getElementById('post-category').textContent = post.category || '공지';
-        document.getElementById('post-date').textContent = post.date || '';
-        document.getElementById('post-content').innerHTML = renderMarkdown(post.content);
+        document.getElementById('prop-image').src = prop.image || 'screen.png';
+        document.getElementById('prop-title').textContent = prop.title;
+        document.getElementById('prop-category').textContent = prop.category;
+        
+        let typeBadgeColor = 'bg-weak-background text-primary';
+        if (prop.type === '매매') typeBadgeColor = 'bg-danger text-white';
+        else if (prop.type === '전세') typeBadgeColor = 'bg-primary text-white';
+        const typeEl = document.getElementById('prop-type');
+        typeEl.textContent = prop.type;
+        typeEl.className = `absolute top-4 left-4 ${typeBadgeColor} text-xs px-3 py-1.5 rounded-full font-bold shadow-sm`;
+
+        let priceStr = prop.price;
+        if (prop.type === '매매' || prop.type === '전세') {
+          const cleanPrice = Number(String(prop.price).replace(/,/g, ''));
+          if (!isNaN(cleanPrice) && cleanPrice >= 10000) {
+            const eok = Math.floor(cleanPrice / 100000000);
+            const man = Math.floor((cleanPrice % 100000000) / 10000);
+            priceStr = (eok > 0 ? eok + '억' : '') + (man > 0 ? ' ' + man + '만' : '') + '원';
+          }
+        }
+        document.getElementById('prop-price').textContent = priceStr;
+        document.getElementById('prop-size').textContent = `${prop.size}㎡ (${Math.round(prop.size * 0.3025)}평)`;
+
+        // Spec details
+        document.getElementById('spec-type').textContent = prop.type;
+        document.getElementById('spec-category').textContent = prop.category;
+        document.getElementById('spec-size').textContent = `${prop.size}㎡`;
+        document.getElementById('spec-rooms').textContent = prop.rooms;
+
+        document.getElementById('prop-content').innerHTML = renderMarkdown(prop.content);
 
         if (isAdmin()) {
           document.getElementById('admin-actions').style.display = 'flex';
           document.getElementById('edit-btn').onclick = () => {
-            window.location.href = `news-write?id=${post.id}`;
+            window.location.href = `property-write?id=${prop.id}`;
           };
           document.getElementById('delete-btn').onclick = async () => {
-            if (confirm('정말로 이 게시글을 삭제하시겠습니까?')) {
+            if (confirm('정말로 이 매물을 삭제하시겠습니까?')) {
               try {
-                await deletePost(post.id);
-                window.location.href = 'news';
+                await deleteProperty(prop.id);
+                window.location.href = 'properties';
               } catch (err) {
                 alert('삭제 실패: ' + err.message);
               }
@@ -240,12 +289,12 @@
           };
         }
       } catch (e) {
-        console.error('Failed to load post detail', e);
-        document.getElementById('loading-spinner').textContent = '게시글을 불러오는 도중 오류가 발생했습니다.';
+        console.error(e);
+        document.getElementById('loading-spinner').textContent = '매물 정보를 불러오는 도중 오류가 발생했습니다.';
       }
     }
 
-    loadPostDetail();
+    loadPropertyDetail();
   </script>
 </body>
 </html>

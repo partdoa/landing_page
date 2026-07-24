@@ -130,29 +130,66 @@
 
   <main class="flex-grow w-full max-w-4xl mx-auto px-margin-mobile md:px-xl py-xl md:py-xxl">
     <div class="mb-lg flex justify-between items-center">
-      <h1 id="page-title" class="text-headline-md md:text-headline-lg font-bold text-on-surface">새 글 작성</h1>
+      <h1 id="page-title" class="text-headline-md md:text-headline-lg font-bold text-on-surface">새 매물 등록</h1>
       <a href="admin" class="text-body font-body-sm hover:underline">취소하고 돌아가기</a>
     </div>
 
     <form id="write-form" class="bg-canvas border border-border rounded-2xl p-lg md:p-xl shadow-sm flex flex-col gap-lg" onsubmit="handleSave(event)">
-      <div class="flex flex-col gap-2">
-        <label for="category" class="font-label-md text-on-surface text-sm">카테고리</label>
-        <select id="category" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
-          <option value="Market Update">Market Update (부동산 동향)</option>
-          <option value="Policy">Policy (세제/정책)</option>
-          <option value="Notice">Notice (공지사항)</option>
-          <option value="Community">Community (지역 소식)</option>
-        </select>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+        <div class="flex flex-col gap-2">
+          <label for="category" class="font-label-md text-on-surface text-sm">매물 유형</label>
+          <select id="category" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
+            <option value="아파트">아파트</option>
+            <option value="빌라">빌라</option>
+            <option value="상가">상가</option>
+            <option value="원룸/투룸">원룸/투룸</option>
+            <option value="오피스텔">오피스텔</option>
+            <option value="토지/임야">토지/임야</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="type" class="font-label-md text-on-surface text-sm">거래 형태</label>
+          <select id="type" onchange="togglePricePlaceholder()" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
+            <option value="매매">매매</option>
+            <option value="전세">전세</option>
+            <option value="월세">월세</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+        <div class="flex flex-col gap-2 md:col-span-2">
+          <label for="price" class="font-label-md text-on-surface text-sm">가격</label>
+          <input id="price" type="text" required placeholder="예: 1,200,000,000 (숫자만) 또는 '보증금 3,000만 / 월 120만'" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="size" class="font-label-md text-on-surface text-sm">전용 면적 (㎡)</label>
+          <input id="size" type="number" required placeholder="예: 84" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+        <div class="flex flex-col gap-2">
+          <label for="rooms" class="font-label-md text-on-surface text-sm">방 및 구조 정보</label>
+          <input id="rooms" type="text" required placeholder="예: 방 3, 욕실 2" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <label for="image" class="font-label-md text-on-surface text-sm">매물 이미지 파일명</label>
+          <input id="image" type="text" value="screen.png" placeholder="예: agent.jpg, screen.png 등" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
+        </div>
       </div>
 
       <div class="flex flex-col gap-2">
-        <label for="title" class="font-label-md text-on-surface text-sm">제목</label>
-        <input id="title" type="text" required placeholder="제목을 입력하세요" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
+        <label for="title" class="font-label-md text-on-surface text-sm">매물 한줄 제목</label>
+        <input id="title" type="text" required placeholder="매물 목록에 표시될 제목" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all">
       </div>
 
       <div class="flex flex-col gap-2">
-        <label for="content" class="font-label-md text-on-surface text-sm">본문 (마크다운 지원)</label>
-        <textarea id="content" required rows="12" placeholder="마크다운을 지원하는 본문을 작성해 주세요. (예: # 제목, - 리스트, **굵게**)" class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all font-mono text-sm leading-relaxed"></textarea>
+        <label for="content" class="font-label-md text-on-surface text-sm">상세 설명 (마크다운 지원)</label>
+        <textarea id="content" required rows="10" placeholder="위치, 주변 호재, 구조적 장점 등 매물 상세 정보를 마크다운 형식으로 적어주세요." class="w-full px-4 py-3 rounded-xl border border-border bg-canvas focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-on-surface transition-all font-mono text-sm leading-relaxed"></textarea>
       </div>
 
       <div id="submit-error" class="text-danger text-body-sm font-semibold" style="display:none;"></div>
@@ -175,7 +212,7 @@
     </div>
   </footer>
 
-  <!-- Mobile Bottom Navigation Bar (모바일 하단 고정 바) -->
+  <!-- Mobile Bottom Navigation Bar -->
   <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-canvas border-t border-border z-40 flex justify-around items-center h-16 shadow-lg">
     <a href="/" class="flex flex-col items-center justify-center w-12 h-12 text-body">
       <span class="material-symbols-outlined text-[24px]">home</span>
@@ -200,25 +237,45 @@
     requireAdmin();
 
     const urlParams = new URLSearchParams(window.location.search);
-    const postId = Number(urlParams.get('id'));
+    const propId = Number(urlParams.get('id'));
+
+    function togglePricePlaceholder() {
+      const type = document.getElementById('type').value;
+      const priceInput = document.getElementById('price');
+      if (type === '매매') {
+        priceInput.placeholder = "예: 1,200,000,000 (숫자만, 12억)";
+      } else if (type === '전세') {
+        priceInput.placeholder = "예: 150,000,000 (숫자만, 1억 5천)";
+      } else {
+        priceInput.placeholder = "예: 보증금 3,000만 / 월 120만";
+      }
+    }
 
     async function checkEditMode() {
-      if (postId) {
-        document.getElementById('page-title').textContent = '게시글 수정';
+      if (propId) {
+        document.getElementById('page-title').textContent = '매물 정보 수정';
         try {
-          const posts = await getPosts();
-          const post = posts.find(p => p.id === postId);
-          if (post) {
-            document.getElementById('category').value = post.category || 'Market Update';
-            document.getElementById('title').value = post.title || '';
-            document.getElementById('content').value = post.content || '';
+          const properties = await getProperties();
+          const prop = properties.find(p => p.id === propId);
+          if (prop) {
+            document.getElementById('category').value = prop.category || '아파트';
+            document.getElementById('type').value = prop.type || '매매';
+            document.getElementById('price').value = prop.price || '';
+            document.getElementById('size').value = prop.size || '';
+            document.getElementById('rooms').value = prop.rooms || '';
+            document.getElementById('image').value = prop.image || 'screen.png';
+            document.getElementById('title').value = prop.title || '';
+            document.getElementById('content').value = prop.content || '';
+            togglePricePlaceholder();
           } else {
-            alert('수정하려는 게시글을 찾을 수 없습니다.');
+            alert('수정하려는 매물 정보를 찾을 수 없습니다.');
             window.location.href = 'admin';
           }
         } catch (e) {
           console.error(e);
         }
+      } else {
+        togglePricePlaceholder();
       }
     }
 
@@ -231,29 +288,33 @@
       submitBtn.disabled = true;
       submitBtn.textContent = '저장 중...';
 
-      const title = document.getElementById('title').value.trim();
       const category = document.getElementById('category').value;
+      const type = document.getElementById('type').value;
+      const price = document.getElementById('price').value.trim();
+      const size = Number(document.getElementById('size').value);
+      const rooms = document.getElementById('rooms').value.trim();
+      const image = document.getElementById('image').value.trim();
+      const title = document.getElementById('title').value.trim();
       const content = document.getElementById('content').value;
-      
-      const today = new Date();
-      const dateStr = today.getFullYear() + '.' + 
-                      String(today.getMonth() + 1).padStart(2, '0') + '.' + 
-                      String(today.getDate()).padStart(2, '0');
 
-      const post = {
-        title,
+      const property = {
         category,
-        content,
-        date: dateStr
+        type,
+        price,
+        size,
+        rooms,
+        image,
+        title,
+        content
       };
 
-      if (postId) {
-        post.id = postId;
+      if (propId) {
+        property.id = propId;
       }
 
       try {
-        await savePost(post);
-        window.location.href = postId ? `news-detail?id=${postId}` : 'news';
+        await saveProperty(property);
+        window.location.href = propId ? `property-detail?id=${propId}` : 'properties';
       } catch (err) {
         console.error(err);
         errEl.textContent = '저장 실패: ' + err.message;
