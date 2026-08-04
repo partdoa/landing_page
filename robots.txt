@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://경춘부동산.kr/sitemap.xml
+Sitemap: https://xn--289aw8k1tikjd64v.kr/sitemap.xml
