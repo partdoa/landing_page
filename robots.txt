@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://landing-page-two-rho-43.vercel.app/sitemap.xml
+Sitemap: https://경춘부동산.kr/sitemap.xml
