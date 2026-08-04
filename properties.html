@@ -125,6 +125,7 @@
       <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="/">홈</a>
       <a class="text-primary font-bold border-b-2 border-primary pb-1 px-3 py-2" href="properties">매물목록</a>
       <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="news">뉴스/소식</a>
+      <a class="text-body font-body-md hover:text-primary transition-colors px-3 py-2 rounded-lg" href="location">찾아오시는길</a>
     </nav>
     <a href="tel:010-9077-3086" class="bg-primary text-on-primary font-label-md text-label-md px-lg py-md rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2">
       <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">phone</span>
@@ -190,22 +191,22 @@
   </footer>
 
   <!-- Mobile Bottom Navigation Bar -->
-  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-canvas border-t border-border z-40 flex justify-around items-center h-16 shadow-lg">
-    <a href="/" class="flex flex-col items-center justify-center w-12 h-12 text-body">
-      <span class="material-symbols-outlined text-[24px]">home</span>
-      <span class="text-[10px]">홈</span>
+  <nav class="md:hidden fixed bottom-0 left-0 w-full bg-canvas border-t border-border flex justify-around items-center h-20 px-4 pb-safe z-50">
+    <a class="flex flex-col items-center gap-1 text-body hover:text-primary transition-colors" href="/">
+      <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 0;">home</span>
+      <span class="text-xs font-bold">홈</span>
     </a>
-    <a href="properties" class="flex flex-col items-center justify-center w-12 h-12 text-primary">
-      <span class="material-symbols-outlined text-[24px]">list_alt</span>
-      <span class="text-[10px]">매물목록</span>
+    <a class="flex flex-col items-center gap-1 text-primary transition-colors" href="properties">
+      <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">real_estate_agent</span>
+      <span class="text-xs font-bold">매물목록</span>
     </a>
-    <a href="news" class="flex flex-col items-center justify-center w-12 h-12 text-body">
-      <span class="material-symbols-outlined text-[24px]">newspaper</span>
-      <span class="text-[10px]">소식</span>
+    <a class="flex flex-col items-center gap-1 text-body hover:text-primary transition-colors" href="news">
+      <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 0;">article</span>
+      <span class="text-xs font-bold">뉴스/소식</span>
     </a>
-    <a href="admin" class="flex flex-col items-center justify-center w-12 h-12 text-body">
-      <span class="material-symbols-outlined text-[24px]">settings</span>
-      <span class="text-[10px]">관리자</span>
+    <a class="flex flex-col items-center gap-1 text-body hover:text-primary transition-colors" href="location">
+      <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 0;">map</span>
+      <span class="text-xs font-bold">오시는길</span>
     </a>
   </nav>
 
